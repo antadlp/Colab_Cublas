@@ -1,5 +1,5 @@
 # Instruction
-On Colab you have to change runtime to GPU
+On Colab you have to change runtime to GPU (Runtime menu)
 
 Then launch this command:
 ```
