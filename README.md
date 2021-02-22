@@ -22,7 +22,7 @@ Setup your google drive:
   drive.mount('/content/gdrive')
 ```
 
-NOTE: Click on the link, choose you account, copy the code and then press enter
+NOTE: Click on the link, choose your account, copy the code on Colab and then press enter
 
 On Colab move to this directory
 ```
