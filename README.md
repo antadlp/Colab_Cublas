@@ -1,4 +1,4 @@
-# Instruction
+# Cublas on Colab
 On Colab you have to change runtime to GPU (Runtime menu).
 Click on "Connect" (top-right)
 
