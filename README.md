@@ -1,5 +1,5 @@
 # Instruction
-On Colab you have to change runtime to GPU (Runtime menu)
+On Colab you have to change runtime to GPU (Runtime menu).
 Click on "Connect" (top-right)
 
 Then launch this command:
