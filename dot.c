@@ -67,7 +67,7 @@ int main (void){
         return EXIT_FAILURE;
     }
     
-    stat = cublasSdot(handle,M,d_a,1,d_b,1,&result);        // dot product function
+    stat = cublasSdot(handle,M,d_a,1,d_b,1,&result);        // Dot product function
     if (stat != CUBLAS_STATUS_SUCCESS) {
         printf ("data download failed cublasSdot");
         cudaFree (d_a);
@@ -76,10 +76,10 @@ int main (void){
         return EXIT_FAILURE;
     }
     
-    printf("Risultato del prodotto --> %f",result);
+    printf("Result of dot product --> %f",result);
     
-    cudaFree (d_a);     // deallocate d_a
-    cudaFree (d_b);     // deallocate d_b
+    cudaFree (d_a);     // Deallocate d_a
+    cudaFree (d_b);     // Deallocate d_b
     
     cublasDestroy(handle);  // Destroy handle
     
