@@ -13,9 +13,9 @@ int main (void){
     float* d_a;         // Device array a
     float* h_b = 0;     // Host array b
     float *d_b;         // Device array b
-    float result = 0;   // Risultato finale
+    float result = 0;   // Result
 
-    h_a = (float *)malloc (M * sizeof (*h_a));      // Alloco h_a e lo inizializzo
+    h_a = (float *)malloc (M * sizeof (*h_a));      // Create memory for h_a and initialize
     if (!h_a) {
         printf ("host memory allocation failed");
         return EXIT_FAILURE;
@@ -24,7 +24,7 @@ int main (void){
     h_a[1] = 10.0;
     h_a[2] = 20.0;
     
-    h_b = (float *)malloc (M * sizeof (*h_b));  // Alloco h_b e lo inizializzo
+    h_b = (float *)malloc (M * sizeof (*h_b));  // Create memory for h_b and initialize
     if (!h_b) {
         printf ("host memory allocation failed");
         return EXIT_FAILURE;
@@ -33,25 +33,25 @@ int main (void){
     h_b[1] = 10.0;
     h_b[2] = 15.0;
     
-    cudaStat = cudaMalloc ((void**)&d_a, M*sizeof(*h_a));       // Alloco d_a
+    cudaStat = cudaMalloc ((void**)&d_a, M*sizeof(*h_a));       // Create memory for d_a
     if (cudaStat != cudaSuccess) {
         printf ("device memory allocation failed");
         return EXIT_FAILURE;
     }
     
-    cudaStat = cudaMalloc ((void**)&d_b, M*sizeof(*h_b));       // Alloco d_b
+    cudaStat = cudaMalloc ((void**)&d_b, M*sizeof(*h_b));       // Create memory for d_b
     if (cudaStat != cudaSuccess) {
         printf ("device memory allocation failed");
         return EXIT_FAILURE;
     }
     
-    stat = cublasCreate(&handle);               // Creo l'handle per cublas
+    stat = cublasCreate(&handle);               // Create handler
     if (stat != CUBLAS_STATUS_SUCCESS) {
         printf ("CUBLAS initialization failed\n");
         return EXIT_FAILURE;
     }
     
-    stat = cublasSetVector(M,sizeof(float),h_a,1,d_a,1);    // Setto h_a su d_a
+    stat = cublasSetVector(M,sizeof(float),h_a,1,d_a,1);    // h_a -> d_a
     if (stat != CUBLAS_STATUS_SUCCESS) {
         printf ("data download failed");
         cudaFree (d_a);
@@ -59,7 +59,7 @@ int main (void){
         return EXIT_FAILURE;
     }
     
-    stat = cublasSetVector(M,sizeof(float),h_b,1,d_b,1);    // Setto h_b su d_b
+    stat = cublasSetVector(M,sizeof(float),h_b,1,d_b,1);    // h_b -> d_b
     if (stat != CUBLAS_STATUS_SUCCESS) {
         printf ("data download failed");
         cudaFree (d_b);
@@ -67,7 +67,7 @@ int main (void){
         return EXIT_FAILURE;
     }
     
-    stat = cublasSdot(handle,M,d_a,1,d_b,1,&result);        // Calcolo il prodotto
+    stat = cublasSdot(handle,M,d_a,1,d_b,1,&result);        // dot product function
     if (stat != CUBLAS_STATUS_SUCCESS) {
         printf ("data download failed cublasSdot");
         cudaFree (d_a);
@@ -78,12 +78,12 @@ int main (void){
     
     printf("Risultato del prodotto --> %f",result);
     
-    cudaFree (d_a);     // Dealloco d_a
-    cudaFree (d_b);     // Dealloco d_b
+    cudaFree (d_a);     // deallocate d_a
+    cudaFree (d_b);     // deallocate d_b
     
-    cublasDestroy(handle);  // Distruggo l'handle
+    cublasDestroy(handle);  // Destroy handle
     
-    free(h_a);      // Dealloco h_a
-    free(h_b);      // Dealloco h_b    
+    free(h_a);      // Deallocate h_a
+    free(h_b);      // Deallocate h_b    
     return EXIT_SUCCESS;
 }
